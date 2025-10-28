@@ -143,7 +143,9 @@ function attemptPlay() {
         audioToggle.title = 'Mute Music';
     }).catch(error => {
         console.log('Autoplay prevented. User interaction required.');
-        // Keep muted state
+        audioToggle.classList.add('muted');
+        audioIcon.innerHTML = `<path d="${mutedIconPath}"/>`;
+        audioToggle.title = 'Play Music';
     });
 }
 
