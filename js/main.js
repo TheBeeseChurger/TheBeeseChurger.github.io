@@ -12,7 +12,7 @@ class Smoke {
         this.vy = -Math.random() * 0.3 - 0.15;
         this.size = Math.random() * 180 + 120;
 
-        this.maxAlpha = Math.random() * 0.12 + 0.03;
+        this.maxAlpha = Math.random() * 0.18 + 0.24;
         this.life = 0;
         this.maxLife = Math.random() * 600 + 400;
     }
