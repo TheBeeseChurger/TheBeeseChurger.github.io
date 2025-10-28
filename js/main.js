@@ -11,18 +11,33 @@ class Smoke {
         this.vx = (Math.random() - 0.5) * 0.3;
         this.vy = -Math.random() * 0.3 - 0.15;
         this.size = Math.random() * 180 + 120;
-        this.alpha = Math.random() * 0.12 + 0.03;
-        this.decay = Math.random() * 0.0003 + 0.0002;
+
+        this.maxAlpha = Math.random() * 0.12 + 0.03;
+        this.life = 0;
+        this.maxLife = Math.random() * 600 + 400;
     }
 
     update() {
         this.x += this.vx;
         this.y += this.vy;
-        this.alpha -= this.decay;
         this.size += 0.15;
+
+        this.life++;
+
+        const progress = this.life / this.maxLife;
+
+        if (progress < 0.3) {
+            this.alpha = this.maxAlpha * (progress / 0.3);
+        } else if (progress > 0.7) {
+            this.alpha = this.maxAlpha * ((1 - progress) / 0.3);
+        } else {
+            this.alpha = this.maxAlpha;
+        }
     }
 
     draw() {
+        if (this.alpha <= 0) return;
+
         ctx.save();
         ctx.globalAlpha = this.alpha;
         const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
@@ -100,7 +115,7 @@ function animateVFX() {
         smokes[i].update();
         smokes[i].draw();
         
-        if (smokes[i].alpha <= 0) {
+        if (smokes[i].life >= smokes[i].maxLife) {
             smokes.splice(i, 1);
         }
     }
