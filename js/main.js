@@ -61,6 +61,8 @@ class Ember {
     }
 
     draw() {
+        if (this.alpha <= 0) return;
+
         ctx.save();
         const flickerAlpha = this.alpha * (0.7 + Math.sin(this.flicker) * 0.3);
         ctx.globalAlpha = flickerAlpha;
@@ -90,7 +92,7 @@ function createEmber() {
     }
 }
 
-function animateSmoke() {
+function animateVFX() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Update and draw smoke
@@ -116,10 +118,10 @@ function animateSmoke() {
     if (Math.random() < 0.1) createSmoke();
     if (Math.random() < 0.15) createEmber();
     
-    requestAnimationFrame(animateSmoke);
+    requestAnimationFrame(animateVFX);
 }
 
-animateSmoke();
+animateVFX();
 
 // Audio Control
 const bgMusic = document.getElementById('bgMusic');
