@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dungeon Crawler - Project</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    
+    <style>
+        .back-button {
+            padding: 0.8rem 2rem;
+            background: rgba(77, 208, 225, 0.1);
+            border: 1px solid rgba(77, 208, 225, 0.3);
+            border-radius: 5px;
+            color: #4dd0e1;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            background: rgba(77, 208, 225, 0.2);
+            border-color: #4dd0e1;
+            box-shadow: 0 0 20px rgba(77, 208, 225, 0.3);
+        }
+
+        .project-subtitle {
+            font-size: 1.3rem;
+            color: #6bb6c4;
+            margin-bottom: 2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .description-content {
+            background: rgba(20, 20, 20, 0.6);
+            padding: 3rem;
+            border-radius: 10px;
+            border: 1px solid rgba(77, 208, 225, 0.2);
+            line-height: 1.8;
+        }
+
+        .description-content p {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .description-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .media-container {
+            width: 100%;
+            height: 600px;
+            background: rgba(20, 20, 20, 0.8);
+            border: 2px solid rgba(77, 208, 225, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .media-placeholder {
+            color: #4dd0e1;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .media-container img,
+        .media-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-button {
+            width: 50px;
+            height: 50px;
+            background: rgba(77, 208, 225, 0.1);
+            border: 2px solid rgba(77, 208, 225, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-button:hover {
+            background: rgba(77, 208, 225, 0.2);
+            border-color: #4dd0e1;
+            box-shadow: 0 0 20px rgba(77, 208, 225, 0.5);
+        }
+
+        .carousel-button svg {
+            width: 20px;
+            height: 20px;
+            fill: #4dd0e1;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            background: rgba(77, 208, 225, 0.2);
+            border: 2px solid rgba(77, 208, 225, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: #4dd0e1;
+            border-color: #4dd0e1;
+            box-shadow: 0 0 10px rgba(77, 208, 225, 0.5);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .link-card {
+            background: rgba(20, 20, 20, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(77, 208, 225, 0.2);
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            border-color: #4dd0e1;
+            box-shadow: 0 10px 30px rgba(77, 208, 225, 0.3);
+        }
+
+        .link-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: rgba(77, 208, 225, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(77, 208, 225, 0.3);
+        }
+
+        .link-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: #4dd0e1;
+        }
+
+        .link-card h3 {
+            color: #4dd0e1;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .link-card p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Audio -->
+    <audio id="bgMusic" loop>
+        <source src="../audio/background-music.mp3" type="audio/mpeg">
+        <source src="../audio/background-music.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- Audio Control Button -->
+    <div class="audio-control" id="audioToggle" title="Toggle Music" style="position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; background: rgba(20, 20, 20, 0.9); border: 2px solid rgba(77, 208, 225, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; z-index: 1000;">
+        <svg id="audioIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px; fill: #4dd0e1;">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+    </div>
+
+    <canvas class="smoke-canvas" id="smokeCanvas"></canvas>
+    
+    <div class="content">
+        <nav>
+            <a href="/index.html" class="logo">GAME DEV PORTFOLIO</a>
+            <a href="/index.html" class="back-button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#4dd0e1">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                Back to Portfolio
+            </a>
+        </nav>
+
+        <header>
+            <h1 class="hero-title">Dungeon Crawler</h1>
+            <p class="hero-subtitle">A 2D Roguelike Adventure</p>
+            <div class="project-tags">
+                <span class="tag">Unity</span>
+                <span class="tag">C#</span>
+                <span class="tag">2D</span>
+                <span class="tag">Procedural Generation</span>
+            </div>
+        </header>
+
+        <section id="description">
+            <h2 class="section-title">Overview</h2>
+            <div class="description-content">
+                <p>Dungeon Crawler is a 2D roguelike dungeon exploration game developed as a final project for my Game Design Fundamentals class. The game challenges players to navigate through procedurally generated dungeons filled with enemies, traps, and treasures.</p>
+                
+                <p>The project focuses on creating engaging combat mechanics and intelligent enemy AI behavior. Each enemy type has unique attack patterns and movement strategies, requiring players to adapt their approach for different encounters. The procedural room generation system ensures that every playthrough offers a fresh experience.</p>
+                
+                <p>Key features include a robust inventory system, multiple weapon types with distinct combat styles, environmental hazards, and a progression system that allows players to unlock new abilities. The game was developed over a 10-week period using Unity and C#, with emphasis on clean code architecture and modular design patterns.</p>
+                
+                <p>This project helped me develop strong skills in Unity development, procedural generation algorithms, state machine implementation for AI, and balancing gameplay mechanics for player engagement.</p>
+            </div>
+        </section>
+
+        <section id="gameplay">
+            <h2 class="section-title">Gameplay</h2>
+            <div class="carousel-container">
+                <div class="carousel" id="carousel">
+                    <div class="carousel-item">
+                        <div class="media-container">
+                            <div class="media-placeholder">
+                                <p>Gameplay Screenshot #1</p>
+                                <p style="font-size: 0.9rem; margin-top: 1rem;">Place your image at: ./images/dungeon-crawler-1.jpg</p>
+                            </div>
+                        </div>
+                        <p class="carousel-caption">Main combat gameplay showing the player character engaging with skeletal enemies in a procedurally generated dungeon room. The UI displays health, stamina, and current weapon.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="media-container">
+                            <div class="media-placeholder">
+                                <p>Gameplay Screenshot #2</p>
+                                <p style="font-size: 0.9rem; margin-top: 1rem;">Place your image at: ./images/dungeon-crawler-2.jpg</p>
+                            </div>
+                        </div>
+                        <p class="carousel-caption">The inventory and equipment system allows players to manage collected items, switch between weapons, and use consumables for strategic advantage.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="media-container">
+                            <div class="media-placeholder">
+                                <p>Gameplay Screenshot #3</p>
+                                <p style="font-size: 0.9rem; margin-top: 1rem;">Place your image at: ./images/dungeon-crawler-3.jpg</p>
+                            </div>
+                        </div>
+                        <p class="carousel-caption">Boss encounter featuring unique attack patterns and phase transitions. Each boss requires learning specific mechanics and timing.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="media-container">
+                            <div class="media-placeholder">
+                                <p>Gameplay Video</p>
+                                <p style="font-size: 0.9rem; margin-top: 1rem;">Place your video at: ./images/dungeon-crawler-video.mp4</p>
+                            </div>
+                        </div>
+                        <p class="carousel-caption">Full gameplay demonstration showing room progression, combat mechanics, and the procedural generation system in action.</p>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-button" onclick="previousSlide()">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                        </svg>
+                    </button>
+                    <button class="carousel-button" onclick="nextSlide()">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="carousel-indicators" id="indicators"></div>
+            </div>
+        </section>
+
+        <section id="links">
+            <h2 class="section-title">Find It Here</h2>
+            <div class="links-grid">
+                <a href="https://github.com/yourusername/dungeon-crawler" class="link-card" target="_blank">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                        </svg>
+                    </div>
+                    <h3>GitHub</h3>
+                    <p>View source code and documentation</p>
+                </a>
+                <a href="https://yourusername.itch.io/dungeon-crawler" class="link-card" target="_blank">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M3 3v6h6V3H3zm8 0v6h6V3h-6zm8 0v6h2V3h-2zM3 11v6h6v-6H3zm8 0v6h6v-6h-6zm8 0v6h2v-6h-2zM3 19v2h6v-2H3zm8 0v2h6v-2h-6zm8 0v2h2v-2h-2z"/>
+                        </svg>
+                    </div>
+                    <h3>Itch.io</h3>
+                    <p>Play the game in your browser</p>
+                </a>
+                <a href="https://youtu.be/example" class="link-card" target="_blank">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                        </svg>
+                    </div>
+                    <h3>Gameplay Video</h3>
+                    <p>Watch full playthrough on YouTube</p>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Smoke Canvas Animation
+        const canvas = document.getElementById('smokeCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Smoke {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 100;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = -Math.random() * 0.3 - 0.15;
+                this.size = Math.random() * 180 + 120;
+                this.alpha = Math.random() * 0.12 + 0.03;
+                this.decay = Math.random() * 0.0003 + 0.0002;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= this.decay;
+                this.size += 0.15;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+                gradient.addColorStop(0, 'rgba(77, 208, 225, 0.06)');
+                gradient.addColorStop(0.5, 'rgba(13, 71, 161, 0.03)');
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(this.x - this.size, this.y - this.size, this.size * 2, this.size * 2);
+                ctx.restore();
+            }
+        }
+
+        class Ember {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = -Math.random() * 0.5 - 0.1;
+                this.size = Math.random() * 3 + 1;
+                this.alpha = Math.random() * 0.6 + 0.2;
+                this.decay = Math.random() * 0.002 + 0.001;
+                this.flicker = Math.random() * 0.3;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= this.decay;
+                
+                this.vx += (Math.random() - 0.5) * 0.02;
+                this.vy += (Math.random() - 0.5) * 0.02;
+                
+                this.flicker += 0.1;
+            }
+
+            draw() {
+                ctx.save();
+                const flickerAlpha = this.alpha * (0.7 + Math.sin(this.flicker) * 0.3);
+                ctx.globalAlpha = flickerAlpha;
+                
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
+                gradient.addColorStop(0, 'rgba(77, 208, 225, 1)');
+                gradient.addColorStop(0.3, 'rgba(77, 208, 225, 0.6)');
+                gradient.addColorStop(1, 'rgba(77, 208, 225, 0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(this.x - this.size * 3, this.y - this.size * 3, this.size * 6, this.size * 6);
+                ctx.restore();
+            }
+        }
+
+        const smokes = [];
+        const embers = [];
+        
+        function createSmoke() {
+            if (smokes.length < 15) {
+                smokes.push(new Smoke());
+            }
+        }
+
+        function createEmber() {
+            if (embers.length < 30) {
+                embers.push(new Ember());
+            }
+        }
+
+        function animateSmoke() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = smokes.length - 1; i >= 0; i--) {
+                smokes[i].update();
+                smokes[i].draw();
+                
+                if (smokes[i].alpha <= 0) {
+                    smokes.splice(i, 1);
+                }
+            }
+
+            for (let i = embers.length - 1; i >= 0; i--) {
+                embers[i].update();
+                embers[i].draw();
+                
+                if (embers[i].alpha <= 0 || embers[i].y < -10) {
+                    embers.splice(i, 1);
+                }
+            }
+
+            if (Math.random() < 0.1) createSmoke();
+            if (Math.random() < 0.15) createEmber();
+            
+            requestAnimationFrame(animateSmoke);
+        }
+
+        animateSmoke();
+
+        // Audio Control
+        const bgMusic = document.getElementById('bgMusic');
+        const audioToggle = document.getElementById('audioToggle');
+        const audioIcon = document.getElementById('audioIcon');
+        let isMuted = true;
+
+        bgMusic.volume = 0.3;
+
+        const mutedIconPath = 'M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z';
+        const unmutedIconPath = 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z';
+
+        function attemptPlay() {
+            bgMusic.play().then(() => {
+                isMuted = false;
+                audioToggle.classList.remove('muted');
+                audioIcon.innerHTML = `<path d="${unmutedIconPath}"/>`;
+                audioToggle.title = 'Mute Music';
+            }).catch(error => {
+                console.log('Autoplay prevented. User interaction required.');
+            });
+        }
+
+        attemptPlay();
+
+        audioToggle.addEventListener('click', () => {
+            if (isMuted || bgMusic.paused) {
+                bgMusic.play();
+                isMuted = false;
+                audioToggle.classList.remove('muted');
+                audioIcon.innerHTML = `<path d="${unmutedIconPath}"/>`;
+                audioToggle.title = 'Mute Music';
+            } else {
+                bgMusic.pause();
+                isMuted = true;
+                audioToggle.classList.add('muted');
+                audioIcon.innerHTML = `<path d="${mutedIconPath}"/>`;
+                audioToggle.title = 'Play Music';
+            }
+        });
+
+        let firstInteraction = true;
+        document.addEventListener('click', () => {
+            if (firstInteraction && bgMusic.paused) {
+                firstInteraction = false;
+                attemptPlay();
+            }
+        }, { once: true });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const carousel = document.getElementById('carousel');
+        const slides = document.querySelectorAll('.carousel-item');
+        const indicatorsContainer = document.getElementById('indicators');
+
+        // Create indicators
+        slides.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator';
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(indicator);
+        });
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update indicators
+            document.querySelectorAll('.indicator').forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateCarousel();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

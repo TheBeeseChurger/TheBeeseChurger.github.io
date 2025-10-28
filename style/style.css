@@ -414,15 +414,6 @@ section {
     opacity: 0;
 }
 
-.particle {
-    position: fixed;
-    width: 2px;
-    height: 2px;
-    background: #4dd0e1;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0;
-}
 
 .audio-control {
     position: fixed;
@@ -477,5 +468,9 @@ section {
     
     .nav-links {
         gap: 1rem;
+    }
+
+    .media-container {
+        height: 400px;
     }
 }
