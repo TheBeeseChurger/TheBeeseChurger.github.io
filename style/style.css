@@ -41,6 +41,7 @@ nav {
     background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(77, 208, 225, 0.1);
+    min-height: 90px;
 }
 
 .logo {
@@ -49,12 +50,15 @@ nav {
     color: #4dd0e1;
     text-shadow: 0 0 10px rgba(77, 208, 225, 0.5);
     text-decoration: none;
+    line-height: 1;
 }
 
 .nav-links {
     display: flex;
     gap: 3rem;
     list-style: none;
+    height: 40px;
+    align-items: center;
 }
 
 .nav-links a {
