@@ -179,7 +179,7 @@ header {
     margin-bottom: 2rem;
 }
 
-.project-page-tags {
+.project-tags {
     display: flex;
     gap: 1rem;
     justify-content: center;
@@ -193,6 +193,7 @@ header {
     border-radius: 20px;
     font-size: 0.9rem;
     color: #4dd0e1;
+    white-space: nowrap;
 }
 
 /* Animations */
@@ -248,7 +249,7 @@ section {
 }
 
 .section-title::before {
-    background: linear-gradient(270deg, transparent, #4dd0e1);
+    background: linear-gradient(270deg, #4dd0e1, transparent);
 }
 
 .section-title::after {

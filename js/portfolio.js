@@ -52,11 +52,4 @@ cards.forEach(card => {
     card.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(0) scale(1)';
     });
-
-    // Prevent default link behavior for demo - remove when you have actual project pages
-    card.addEventListener('click', function(e) {
-        e.preventDefault();
-        const projectName = this.querySelector('.project-title').textContent;
-        alert(`Project page for "${projectName}" would open here.\n\nUpdate the href attributes in the HTML to link to your actual project pages.`);
-    });
 });
