@@ -11,8 +11,7 @@ const observer = new IntersectionObserver((entries) => {
             const skillItems = document.querySelectorAll('.skill-item');
             skillItems.forEach((item, index) => {
                 setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
+                    item.classList.add('in-view');
                 }, index * 50);
             });
         }
@@ -23,13 +22,6 @@ const skillsSection = document.getElementById('skills');
 if (skillsSection) {
     observer.observe(skillsSection);
 }
-
-//Initalize skills as hidden
-document.querySelectorAll('.skill-item').forEach(item => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateX(-20px)';
-    item.style.transition = 'all 0.5s ease';
-});
 
 // Smooth scroll for navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
