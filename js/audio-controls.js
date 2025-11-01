@@ -31,7 +31,7 @@ attemptPlay();
 
 // Toggle audio on button click
 audioToggle.addEventListener('click', () => {
-    if (isMuted || bgMusic.paused) {
+    if (isMuted && bgMusic.paused) {
         bgMusic.play();
         isMuted = false;
         audioToggle.classList.remove('muted');
@@ -48,9 +48,18 @@ audioToggle.addEventListener('click', () => {
 
 // Also try to play on first click anywhere on the page
 let firstInteraction = true;
-document.addEventListener('click', () => {
-    if (firstInteraction && bgMusic.paused) {
-        firstInteraction = false;
+document.addEventListener('click', (e) => {
+    if (!firstInteraction) {
+        return;
+    }
+    firstInteraction = false;
+    
+    if (audioToggle && audioToggle.contains(e.target)) {
+        return; // Already handled in the toggle listener
+    }
+
+    if (bgMusic.paused) {
         attemptPlay();
     }
+    
 }, { once: true });
