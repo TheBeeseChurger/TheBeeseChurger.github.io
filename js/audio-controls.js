@@ -50,11 +50,11 @@ function updateIcon(muted) {
     isMuted = muted;
     if (muted) {
         audioToggle.classList.add('muted');
-        audioIcon.innerHTML = '<path d="${mutedIconPath}"/>';
+        audioIcon.innerHTML = `<path d="${mutedIconPath}"/>`;
         audioToggle.title = 'Play Music';
     } else {
         audioToggle.classList.remove('muted');
-        audioIcon.innerHTML = '<path d="${unmutedIconPath}"/>';
+        audioIcon.innerHTML = `<path d="${unmutedIconPath}"/>`;
         audioToggle.title = 'Mute Music';
     }
 }
