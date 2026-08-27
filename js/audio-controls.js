@@ -106,7 +106,7 @@ document.addEventListener('click', (e) => {
         return; // Already handled in the toggle listener
     }
 
-    if (bgMusic.paused && wasMuted === 'false') {
+    if (bgMusic.paused && wasMuted !== 'true') {
         attemptPlay();
     }
     
