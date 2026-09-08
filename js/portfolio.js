@@ -1,5 +1,8 @@
 // Portfolio page specific JavaScript
 
+// Create project cards
+
+
 // Skill animation on scroll
 const observerOptions = {
     threshold: 0.5

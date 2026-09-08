@@ -1,3 +1,5 @@
+// Build project page
+
 // Carousel functionality
 let currentSlide = 0;
 const carousel = document.getElementById('carousel');

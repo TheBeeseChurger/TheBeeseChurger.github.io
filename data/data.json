@@ -1,0 +1,46 @@
+[
+    {
+        "title": "Which Witch?",
+        "description": "A 2D rhythm/dating-sim game with a unique mix of storytelling and head-bopping music. Still in development, originally made in a game jam.",
+        "tags": ["Godot", "GDScript", "2D"],
+        "main_role": "Lead Developer, Game Director",
+        "disabled": false,
+        "page_link": "/projects/which-witch/",
+        "featured": true,
+        "featured_thumbnail": "/images/which-witch-featured.png"
+    },
+    {
+        "title": "Closed Eyes",
+        "description": "A narrative-driven newspaper-editing game where spinning the story to the public and managing differing factions affect the future of a noir city.",
+        "tags": ["Godot", "GDScript", "2D/3D"],
+        "main_role": "Lead Writer, Lead Designer",
+        "disabled": false,
+        "page_link": "/projects/closed-eyes/",
+        "featured": true,
+        "featured_thumbnail": "/images/closed-eyes-featured.png"
+    },
+    {
+        "title": "Pluto",
+        "description": "A single player arcade-style game focused heavily on that authentic arcade machine feel. A randomly generated maze with some secret easter eggs and a hidden lore.",
+        "tags": ["Unity", "C#", "2D"],
+        "main_role": "Solo Developer",
+        "disabled": false,
+        "page_link": "/projects/pluto/",
+        "featured": true,
+        "featured_thumbnail": "/images/pluto-featured.png"
+    },
+    {
+        "title": "Phoenix",
+        "description": "A 3D narrative-adventure horror game with a focus on atmospheric storytelling and strong narrative beats.",
+        "tags": ["Unity", "C#", "3D"],
+        "main_role": "Solo Developer",
+        "disabled": true
+    },
+    {
+        "title": "Untitled Card Game",
+        "description": "A WIP card game centered around strategic card usage mixed with the match influencing the world around it, including creatures, spells, environmentals, and more.",
+        "tags": ["Unity", "C#", "2D/3D"],
+        "main_role": "Solo Developer",
+        "disabled": true
+    }
+]
