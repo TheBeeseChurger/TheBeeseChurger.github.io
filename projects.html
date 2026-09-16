@@ -43,12 +43,62 @@
             </a>
         </nav>
 
-        <section id="projects" style="padding-top: 12rem;">
-            <h1 class="projects-title">Projects</h1>
-            <div class="project-list">
-                <!-- Project items will be dynamically inserted here -->
+        <header>
+            <h1 class="project-title">All Projects</h1>
+            <p class="project-subtitle">Explore my game development projects, showcasing my skills in programming, design, and interactive experiences, professional and personal.</p>
+        </header>
+
+        <section id="projects">
+            <div class="projects-layout">
+                <aside class="filter-sidebar">
+                    <div class="filter-sidebar-title">Filters</div>
+
+                    <div class="filter-block">
+                        <div class="filter-block-label">Project Type</div>
+                        <div class="filter-options" id="typeFilterContainer">
+                            <!-- All/Professional/Personal filter options will be dynamically inserted here -->
+                        </div>
+                    </div>
+
+                    <div class="filter-block">
+                        <div class="filter-block-label">Tags</div>
+                        <div class="filter-options" id="tagFilterContainer">
+                            <!-- Collected tag filter options will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="projects-list-container">
+                    <div class="search-bar-container">
+                        <input type="text" class="search-bar" id="searchInput" placeholder="Search projects by name or description...">
+                    </div>
+                    <p class="results count" id="resultsCount"></p>
+                    <div class="projects-list" id="projectsList">
+                        <!-- Project items will be dynamically inserted here -->
+                    </div>
+                </div>
             </div>
         </section>
+
+        <footer>
+        <div class="footer-content">
+            <div class="footer-title">Crafted With</div>
+            <div class="footer-credits">
+                <div class="footer-credit">
+                    <span>Website design assisted by</span>
+                    <a href="https://claude.ai" target="_blank" rel="noopener">Claude AI</a>
+                </div>
+                <div class="footer-credit">
+                    <span>Background music by</span>
+                    <a href="https://pixabay.com/users/13831549/" target="_blank" rel="noopener">FaithVentureMedia</a>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-copyright">
+                © 2026 Brandon Underwood. All rights reserved.
+            </div>
+        </div>
+        </footer>
     </div>
 
     <script src="js/bg-animations.js"></script>
