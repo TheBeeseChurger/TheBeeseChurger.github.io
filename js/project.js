@@ -1,4 +1,4 @@
-// Build project page
+// Build project page (WIP)
 
 // Carousel functionality
 let currentSlide = 0;

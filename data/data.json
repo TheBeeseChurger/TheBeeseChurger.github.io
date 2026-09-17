@@ -8,7 +8,8 @@
         "page_link": "/projects/which-witch/",
         "featured": true,
         "featured_thumbnail": "/images/which-witch-featured.png",
-        "featured_thumbnail_alt": ""
+        "featured_thumbnail_alt": "",
+        "professional": false
     },
     {
         "title": "Closed Eyes",
@@ -19,7 +20,8 @@
         "page_link": "/projects/closed-eyes/",
         "featured": true,
         "featured_thumbnail": "/images/closed-eyes-featured.png",
-        "featured_thumbnail_alt": ""
+        "featured_thumbnail_alt": "",
+        "professional": false
     },
     {
         "title": "Pluto",
@@ -30,7 +32,8 @@
         "page_link": "/projects/pluto/",
         "featured": true,
         "featured_thumbnail": "/images/pluto-featured.png",
-        "featured_thumbnail_alt": ""
+        "featured_thumbnail_alt": "",
+        "professional": false
     },
     {
         "title": "Wraithborne",
@@ -39,13 +42,15 @@
         "main_role": "Solo Developer",
         "disabled": false,
         "page_link": "/projects/wraithborne/",
-        "featured": false
+        "featured": false,
+        "professional": false
     },
     {
         "title": "Phoenix",
         "description": "A 3D narrative-adventure horror game with a focus on atmospheric storytelling and strong narrative beats.",
         "tags": ["Unity", "C#", "3D"],
         "main_role": "Solo Developer",
-        "disabled": true
+        "disabled": true,
+        "professional": false
     }
 ]
