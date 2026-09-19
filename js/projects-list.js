@@ -12,10 +12,8 @@ const tagFilterContainer = document.getElementById('tagFilterContainer');
 const resultsCount = document.getElementById('resultsCount');
 
 const professionalBadgeSvg = `
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
     </svg>
 `;
 
@@ -28,9 +26,9 @@ async function loadAllProjects() {
         const data = await response.json();
         projects = data;
 
-        // TODO: Build filters and render projects list here
         buildTypeFilters();
         buildTagFilters();
+        renderProjectsList();
     } catch (error) {
         console.error('Error loading projects:', error);
         listContainer.innerHTML = '<p class="no-results">Failed to load projects. Please try again later.</p>';
@@ -49,14 +47,14 @@ function buildTypeFilters() {
             activeType = el.getAttribute('data-type');
             typeFilterContainer.querySelectorAll('.filter-tag').forEach(tag => tag.classList.remove('active'));
             el.classList.add('active');
-            // TODO: Render Projects list here
+            renderProjectsList();
         })
     })
 }
 
 function buildTagFilters() {
     const uniqueTags = new Set();
-    projects.forEach(project => project.tags.forEach(tag => uniqueTags.add(tag)));
+    projects.filter(project => {return !project.disabled;}).forEach(project => project.tags.forEach(tag => uniqueTags.add(tag)));
 
     const tags = ['All', ...Array.from(uniqueTags).sort()];
 
@@ -85,14 +83,16 @@ function buildTagFilters() {
                     tagEl.classList.add('active');
                 }
             });
-            // TODO: Render Projects list here
+            renderProjectsList();
         })
     });
 }
 
 function getFilteredProjects() {
     return projects.filter(project => {
-        const matchesTags = activeTags.has('All') || project.tags.every(tag => activeTags.has(tag));
+        if (project.disabled) return false;
+
+        const matchesTags = activeTags.has('All') || [...activeTags].every(tag => project.tags.includes(tag));
 
         const matchesType = 
             activeType === 'All' ||
@@ -114,9 +114,35 @@ function renderProjectsList() {
     resultsCount.textContent = `${filteredProjects.length} project${filteredProjects.length !== 1 ? 's' : ''} found`;
 
     if (filteredProjects.length === 0) {
-        listContainer.innerHTML = '<p class="no-results">Not finding what you\'re looking for here! Try another search with a different search or some different filters.</p>';
+        listContainer.innerHTML = '<p class="no-results">Not finding what you\'re looking for here! Try another search with a different search or different filters.</p>';
         return;
     }
+
+    listContainer.innerHTML = filteredProjects.map(project => `
+        <a href="${project.page_link}" class="project-list-card">
+            <div class="project-list-banner">
+                ${project.list_banner
+                    ? `<img src="${project.list_banner}" alt="${project.title} banner" onerror="this.parentElement.innerHTML='<div class=\\'project-list-banner-placeholder\\'>No banner image yet</div>'">`
+                    : `<div class="project-list-banner-placeholder">No banner image yet</div>`
+                }
+            </div>
+            <div class="project-list-content">
+                <div class="project-list-header">
+                    <h3>${project.title}</h3>
+                    ${project.professional ? `<span class="professional-badge">${professionalBadgeSvg}Professional</span>` : ''}
+                </div>
+                <p class="project-list-desc">${project.description}</p>
+                <div class="project-list-tags">
+                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+            </div>
+        </a>
+    `).join('');
 }
+
+searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value;
+    renderProjectsList();
+});
 
 loadAllProjects();
