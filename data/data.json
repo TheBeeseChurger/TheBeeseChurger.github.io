@@ -6,8 +6,9 @@
         "main_role": "Lead Developer & Game Director",
         "disabled": false,
         "page_link": "/projects/which-witch/",
+        "list_banner": "/images/which-witch/which-witch-banner.png",
         "featured": true,
-        "featured_thumbnail": "/images/which-witch-featured.png",
+        "featured_thumbnail": "/images/which-witch/which-witch-featured.png",
         "featured_thumbnail_alt": "",
         "professional": false
     },
@@ -18,8 +19,9 @@
         "main_role": "Lead Writer & Lead Designer",
         "disabled": false,
         "page_link": "/projects/closed-eyes/",
+        "list_banner": "/images/closed-eyes/closed-eyes-banner.png",
         "featured": true,
-        "featured_thumbnail": "/images/closed-eyes-featured.png",
+        "featured_thumbnail": "/images/closed-eyes/closed-eyes-featured.png",
         "featured_thumbnail_alt": "",
         "professional": false
     },
@@ -30,8 +32,9 @@
         "main_role": "Solo Developer",
         "disabled": false,
         "page_link": "/projects/pluto/",
+        "list_banner": "/images/pluto/pluto-banner.png",
         "featured": true,
-        "featured_thumbnail": "/images/pluto-featured.png",
+        "featured_thumbnail": "/images/pluto/pluto-featured.png",
         "featured_thumbnail_alt": "",
         "professional": false
     },
@@ -42,6 +45,7 @@
         "main_role": "Solo Developer",
         "disabled": false,
         "page_link": "/projects/wraithborne/",
+        "list_banner": "/images/wraithborne/wraithborne-banner.png",
         "featured": false,
         "professional": false
     },
