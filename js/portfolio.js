@@ -52,6 +52,64 @@ function initProjectCardHoverEffects() {
 
 createProjectCards();
 
+// Resume summary masonry layout
+function initResumeMasonry() {
+    const grid = document.querySelector('.resume-grid');
+    if (!grid) return;
+
+    const items = Array.from(grid.querySelectorAll('.content-box'));
+    if (items.length === 0) return;
+
+    const GAP_FALLBACK = 32;
+
+    function getColumnCount() {
+        const w = grid.offsetWidth;
+        if (w >= 640) return 3;
+        if (w >= 320) return 2;
+        return 1;
+    }
+
+    function layoutMasonry() {
+        const columnCount = getColumnCount();
+        const columns = [];
+        const colHeights = new Array(columnCount).fill(0);
+
+        for (let i = 0; i < columnCount; i++) {
+            const col = document.createElement('div');
+            col.className = 'resume-column';
+            columns.push(col);
+        }
+
+        grid.innerHTML = '';
+        columns.forEach(col => grid.appendChild(col));
+
+        const computedGap = parseFloat(getComputedStyle(columns[0]).rowGap);
+        const gap = Number.isFinite(computedGap) ? computedGap : GAP_FALLBACK;
+
+        items.forEach(item => {
+            // Place into shortest column
+            let shortestIndex = 0;
+            for (let i = 1; i < columnCount; i++) {
+                if (colHeights[i] < colHeights[shortestIndex]) {
+                    shortestIndex = i;
+                }
+            }
+            columns[shortestIndex].appendChild(item);
+            colHeights[shortestIndex] += item.offsetHeight + gap;
+        });
+    }
+
+    layoutMasonry();
+
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(layoutMasonry, 150);
+    });
+}
+
+initResumeMasonry();
+
 // Skill animation on scroll
 const observerOptions = {
     threshold: 0.5
