@@ -96,7 +96,7 @@ const smokes = [];
 const embers = [];
 
 function createSmoke() {
-    if (smokes.length < 15) {
+    if (smokes.length < 20) {
         smokes.push(new Smoke());
     }
 }
@@ -130,8 +130,8 @@ function animateVFX() {
         }
     }
 
-    if (Math.random() < 0.1) createSmoke();
-    if (Math.random() < 0.15) createEmber();
+    if (Math.random() < 0.08) createSmoke();
+    if (Math.random() < 0.1) createEmber();
     
     requestAnimationFrame(animateVFX);
 }
