@@ -1084,6 +1084,58 @@ section {
     fill: var(--opposing-color);
 }
 
+/* View Toggle */
+.view-toggle {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    display: flex;
+    background: var(--content-box-background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 30px;
+    padding: 4px;
+    gap: 4px;
+    z-index: 1000;
+}
+
+.view-toggle-button {
+    padding: 0.6rem 1.3rem;
+    background: transparent;
+    border: none;
+    border-radius: 24px;
+    color: var(--secondary-text-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.view-toggle-button:hover {
+    color: var(--primary-color);
+}
+
+.view-toggle-button.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    box-shadow: 0 0 15px var(--hover-color);
+}
+
+/* Dual-content visibility (by data-view) */
+.content-designer,
+.content-programmer {
+    display: none;
+}
+
+html[data-view="designer"] .content-designer {
+    display: block;
+}
+
+html[data-view="programmer"] .content-programmer {
+    display: block;
+}
+
 /* Footer */
 footer {
     background: var(--nav-background-color);
@@ -1167,6 +1219,21 @@ footer {
 
 /* Responsive Mobile Design */
 @media (max-width: 768px) {
+    .audio-control {
+        right: 1rem;
+        bottom: 1rem;
+    }
+
+    .view-toggle {
+        left: 1rem;
+        bottom: 1rem;
+    }
+
+    .view-toggle-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+
     .hero-title,
     .project-title {
         font-size: 3rem;
