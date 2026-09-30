@@ -418,10 +418,26 @@ section {
     margin: 0 auto;
 }
 
+.about-content .content-box {
+    margin-bottom: 3rem;
+}
+
+.about-content .content-box:last-child {
+    margin-bottom: 0;
+}
+
 /* Project Description */
 .description-content {
     max-width: 1000px;
     margin: 0 auto;
+}
+
+.description-content .content-box {
+    margin-bottom: 3rem;
+}
+
+.description-content .content-box:last-child {
+    margin-bottom: 0;
 }
 
 /* Project Grid */
