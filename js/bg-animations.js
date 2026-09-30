@@ -12,7 +12,7 @@ class Smoke {
         this.vy = -Math.random() * 0.3 - 0.15;
         this.size = Math.random() * 180 + 120;
 
-        this.maxAlpha = Math.random() * 0.28 + 0.34;
+        this.maxAlpha = Math.random() * 0.26 + 0.5;
         this.life = 0;
         this.maxLife = Math.random() * 600 + 400;
     }
@@ -79,7 +79,7 @@ class Ember {
         if (this.alpha <= 0) return;
 
         ctx.save();
-        const flickerAlpha = this.alpha * (0.7 + Math.sin(this.flicker) * 0.3);
+        const flickerAlpha = this.alpha * (0.7 + Math.sin(this.flicker * 0.3) * 0.3);
         ctx.globalAlpha = flickerAlpha;
         
         const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
