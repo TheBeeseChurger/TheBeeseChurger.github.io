@@ -1183,6 +1183,45 @@ html[data-view="programmer"] .content-programmer {
                --secondary-color var(--trans-time) ease !important;
 }
 
+/* Code Showcase */
+.code-block {
+    background: var(--strong-background-color);
+    border: 1px solid rgba(var(--fade-rgb), 0.25);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 0 2rem;
+}
+
+.code-block:last-child {
+    margin-bottom: 0;
+}
+
+.code-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem;
+    background: var(--faded-background-color);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    letter-spacing: 0.03rem;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 1.5rem;
+    overflow-x: auto;
+}
+
+.code-block code.hljs {
+    background: transparent !important;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
 /* Footer */
 footer {
     background: var(--strong-background-color);
