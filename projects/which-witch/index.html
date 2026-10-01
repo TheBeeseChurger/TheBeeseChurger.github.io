@@ -16,6 +16,9 @@
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/style/style.css">
+
+    <!-- highlight.js -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
 </head>
 <body>
     <!-- Background Audio -->
@@ -28,6 +31,12 @@
         <svg id="audioIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
         </svg>
+    </div>
+
+    <!-- Designer / Programmer View Toggle -->
+    <div class="view-toggle">
+        <button class="view-toggle-button" data-view="designer">Designer</button>
+        <button class="view-toggle-button" data-view="programmer">Programmer</button>
     </div>
 
     <canvas class="smoke-canvas" id="smokeCanvas"></canvas>
@@ -183,6 +192,7 @@
 
     <script src="/js/bg-animations.js"></script>
     <script src="/js/audio-controls.js"></script>
+    <script src="/js/view-toggle.js"></script>
     <script src="/js/project.js"></script>
 </body>
 </html>

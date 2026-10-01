@@ -152,6 +152,10 @@ nav {
     box-shadow: 0 0 20px var(--border-color);
 }
 
+.back-button svg {
+    fill: var(--primary-color);
+}
+
 /* Hero Sections*/
 header {
     height: 100vh;
@@ -211,7 +215,7 @@ header {
     width: 100%;
     height: 100%;
     border-bottom: 2px solid var(--accent-color);
-    object-fit: fill;
+    object-fit: cover;
 }
 
 .project-hero-box {
@@ -361,6 +365,11 @@ section {
 
 .content-box p:last-child {
     margin-bottom: 0;
+}
+
+.content-box span.content-designer,
+.content-box span.content-programmer {
+    color: var(--primary-color);
 }
 
 /* Resume Section */
