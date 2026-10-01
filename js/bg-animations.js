@@ -4,6 +4,64 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+const DEFAULT_FADE_RGB = {r: 77, g: 208, b: 225};
+
+const COLOR_TRANSITION_MS = 600;
+
+function readColorVar(varName, fallback) {
+    const raw = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+    if (!raw) return fallback;
+
+    const parts = raw.split(',').map(n => parseInt(n.trim(), 10));
+    if (parts.length === 3 && parts.every(n => !isNaN(n))) {
+        return {r: parts[0], g: parts[1], b: parts[2]};
+    }
+    return fallback;
+}
+
+function lerpColor(from, to, t) {
+    return {
+        r: from.r + (to.r - from.r) * t,
+        g: from.g + (to.g - from.g) * t,
+        b: from.b + (to.b - from.b) * t
+    };
+}
+
+let accentColor = readColorVar('--fade-rgb', DEFAULT_FADE_RGB);
+
+let colorFrom = {...accentColor};
+let colorTo = {...accentColor};
+let transitionStart = null;
+
+function triggerColorTransition() {
+    colorFrom = {...accentColor};
+    colorTo = readColorVar('--fade-rgb', DEFAULT_FADE_RGB);
+    transitionStart = performance.now();
+}
+
+function updateColorTransition(now) {
+    if (transitionStart === null) return;
+
+    const elapsed = now - transitionStart;
+    const t = Math.min(elapsed / COLOR_TRANSITION_MS, 1);
+
+    accentColor = lerpColor(colorFrom, colorTo, t);
+
+    if (t >= 1) {
+        transitionStart = null;
+    }
+}
+
+// Watch for changes to data-view
+const themeObserver = new MutationObserver(mutations => {
+    for (const mutation of mutations) {
+        if (mutation.attributeName === 'data-view') {
+            triggerColorTransition();
+        }
+    }
+});
+themeObserver.observe(document.documentElement, { attributes: true });
+
 class Smoke {
     constructor() {
         this.x = Math.random() * canvas.width;
@@ -41,8 +99,9 @@ class Smoke {
         ctx.save();
         ctx.globalAlpha = this.alpha;
         const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-        gradient.addColorStop(0, 'rgba(77, 208, 225, 0.06)');
-        gradient.addColorStop(0.5, 'rgba(13, 71, 161, 0.03)');
+        const {r, g, b} = accentColor;
+        gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.06)`);
+        gradient.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, 0.03)`);
         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = gradient;
         ctx.fillRect(this.x - this.size, this.y - this.size, this.size * 2, this.size * 2);
@@ -83,9 +142,10 @@ class Ember {
         ctx.globalAlpha = flickerAlpha;
         
         const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
-        gradient.addColorStop(0, 'rgba(77, 208, 225, 1)');
-        gradient.addColorStop(0.3, 'rgba(77, 208, 225, 0.6)');
-        gradient.addColorStop(1, 'rgba(77, 208, 225, 0)');
+        const {r, g, b} = accentColor;
+        gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 1)`);
+        gradient.addColorStop(0.3, `rgba(${r}, ${g}, ${b}, 0.6)`);
+        gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
         ctx.fillStyle = gradient;
         ctx.fillRect(this.x - this.size * 3, this.y - this.size * 3, this.size * 6, this.size * 6);
         ctx.restore();
@@ -107,7 +167,9 @@ function createEmber() {
     }
 }
 
-function animateVFX() {
+function animateVFX(timestamp) {
+    updateColorTransition(timestamp);
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Update and draw smoke
@@ -137,7 +199,7 @@ function animateVFX() {
 }
 
 // Start the animation loop
-animateVFX();
+requestAnimationFrame(animateVFX);
 
 // Window resize handler
 window.addEventListener('resize', () => {

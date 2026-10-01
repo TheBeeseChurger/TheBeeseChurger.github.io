@@ -6,8 +6,13 @@
     const STORAGE_KEY = 'siteView';
     const root = document.documentElement;
     const buttons = document.querySelectorAll('.view-toggle-button');
+    const TRANSITON_MS = 600;
+    const BUFFER_MS = 0;
 
     if (buttons.length === 0) return; // Not a page with any need for loading toggles. This also means toggles with tags wont work
+
+    let transitionTimeout = null;
+    let setViewTimeout = null;
 
     function setView(view) {
         root.setAttribute('data-view', view);
@@ -36,6 +41,18 @@
     setView(initialView);
 
     buttons.forEach(btn => {
-        btn.addEventListener('click', () => setView(btn.dataset.view));
+        btn.addEventListener('click', () => {
+            // Override ALL color properties on all elements
+            root.classList.add('theme-override');
+            clearTimeout(transitionTimeout);
+            transitionTimeout = setTimeout(() => {
+                root.classList.remove('theme-override');
+            }, TRANSITON_MS);
+
+            clearTimeout(setViewTimeout);
+            setViewTimeout = setTimeout(() => {
+                setView(btn.dataset.view);
+            }, BUFFER_MS);
+        });
     });
 })();
